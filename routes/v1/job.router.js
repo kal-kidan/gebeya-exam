@@ -16,7 +16,7 @@ const router = express.Router()
  * 
  * @route POST /v1/job
  * @group Job 
- * @param {User.model} user.body.required - the new user
+ * @param {Job.model} Job.body.required - the new user
  * @returns {object} 200 - success message with job object
  * @returns {Error}  400 - invalid inputs
  */
@@ -27,7 +27,7 @@ router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.a
 /**
  * @route GET /v1/job/{_id}
  * @group Job
- * @param {string} id.path.required
+ * @param {string} _id.path.required
  * @security JWT
  * @returns {Object} 200 - returns job object
  * @returns {Error} 404 - job not found
