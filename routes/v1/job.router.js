@@ -22,11 +22,7 @@ const router = express.Router()
   
 
 router.post('/job' ,validator.validateJob, JobController.addJob )
-/**
- * @typedef Credential
- * @property {string} email.required
- * @property {string} password.required
- */
+ 
 /**
  * @route GET /v1/job/{id}
  * @group Job
