@@ -5,9 +5,9 @@ const {hasPermission} = require('./../../middleware/permission')
 const router = express.Router()
 /**
  * @typedef Job
- * @property {string} title.required user first name
- * @property {string} category.required user last name
- * @property {string} detail.required unique user email
+ * @property {string} title.required job title
+ * @property {string} category.required job category
+ * @property {string} detail.required job detail
  */
 /**
  * 
@@ -15,7 +15,7 @@ const router = express.Router()
  * Create a new job 
  * 
  * @route POST /v1/job
- * @group Job 
+ * @group job 
  * @param {Job.model} Job.body.required - the new user
  * @returns {object} 200 - success message with job object
  * @returns {Error}  400 - invalid inputs
@@ -26,7 +26,7 @@ router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.a
  
 /**
  * @route GET /v1/job/{_id}
- * @group Job
+ * @group job
  * @param {string} _id.path.required
  * @security JWT
  * @returns {Object} 200 - returns job object
@@ -37,7 +37,7 @@ router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
 
 /**
  * @route GET /v1/job/jobs/list
- * @group Job
+ * @group job
  * @param {string} limit.query.required
  * @param {string} page.query.required
  * @security JWT
