@@ -36,7 +36,7 @@ router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.a
 router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
 
 /**
- * @route GET /v1/job/list
+ * @route GET /v1/job/jobs/list
  * @group Job
  * @param {string} limit.query.required
  * @param {string} page.query.required
@@ -45,5 +45,5 @@ router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/list',hasPermission('getJobList'),JobController.getJobList )
+router.get('/jobs/list',hasPermission('getJobList'),JobController.getJobList )
 module.exports = router
