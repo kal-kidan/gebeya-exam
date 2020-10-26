@@ -33,7 +33,7 @@ router.post('/signup' ,validator.validateUser, AuthController.signUp )
 /**
  * @route POST /v1/auth/signin
  * @group Auth
- * @param {Credential.model} user.body.required
+ * @param {Credential.model} Credential.body.required
  * @returns {Object} 200 - user object
  * @returns {Error} 401 - un authorized
  */
