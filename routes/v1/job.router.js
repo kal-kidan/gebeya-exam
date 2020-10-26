@@ -21,7 +21,7 @@ const router = express.Router()
  */
   
 
-router.post('/job' ,validator.validateJob, JobController.addJob )
+router.post('/' ,validator.validateJob, JobController.addJob )
  
 /**
  * @route GET /v1/job/{id}
@@ -32,5 +32,5 @@ router.post('/job' ,validator.validateJob, JobController.addJob )
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/job/:_id',JobController.getJobDetail )
+router.get('/:_id',JobController.getJobDetail )
 module.exports = router

@@ -35,8 +35,8 @@ const expressSwagger = require('express-swagger-generator')(app)
 let options = {
     swaggerDefinition: {
         info: {
-            description: 'gebeya exam',
-            title: 'gebeya exam',
+            description: 'Job Portal',
+            title: 'Job Portal',
             version: '1.0.0',
         },
         host: `localhost:${process.env.PORT}`,
