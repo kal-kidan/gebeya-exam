@@ -29,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.2.0",
     "mongoose": "^5.10.9",
+    "mongoose-paginate": "^5.0.3",
     "nodemon": "^2.0.5",
     "supertest": "^5.0.0",
     "unless": "^0.1.1",

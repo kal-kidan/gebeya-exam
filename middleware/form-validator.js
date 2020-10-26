@@ -7,7 +7,13 @@ const validateUser = [
   check('phoneNumber').isLength({min: 9}).withMessage("please enter valid phone number"),
   check('role').isAlpha().withMessage("please enter valid role")
 ]
+const validateJob = [
+  check('title').isAlpha().withMessage("please enter valid title"),
+  check('category').isAlpha().withMessage("please enter valid category"),
+  check('detail').isAlpha().withMessage("please enter valid job detail"),
+]
 
 module.exports = {
-    validateUser
+    validateUser,
+    validateJob
 }
