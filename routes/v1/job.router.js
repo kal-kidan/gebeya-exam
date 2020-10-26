@@ -24,7 +24,7 @@ const router = express.Router()
 router.post('/' ,validator.validateJob, JobController.addJob )
  
 /**
- * @route GET /v1/job/{id}
+ * @route GET /v1/job/{_id}
  * @group Job
  * @param {string} id.path.required
  * @security JWT
@@ -33,4 +33,16 @@ router.post('/' ,validator.validateJob, JobController.addJob )
  * 
  */
 router.get('/:_id',JobController.getJobDetail )
+
+/**
+ * @route GET /v1/job/list
+ * @group Job
+ * @param {string} limit.query.required
+ * @param {string} page.query.required
+ * @security JWT
+ * @returns {Object} 200 - returns job object
+ * @returns {Error} 404 - job not found
+ * 
+ */
+router.get('/list',JobController.getJobList )
 module.exports = router

@@ -7,7 +7,7 @@ const addJob = async (req, res, next)=>{
         const job = await Job.create(req.body)
         if(!job) 
         return next(ApiError.badRequest(errors))
-        return res.json({status: true, msg: "you have successfuly added a job"})  
+        return res.json({status: true, msg: "you have successfuly added a job", job})  
           
        } catch (error) {
         return next(ApiError.internalServerError(error.message))
@@ -17,8 +17,6 @@ const addJob = async (req, res, next)=>{
 const getJobDetail = async (req, res, next)=>{
     try {
       let {_id} = req.params
-      if(userId!== req.user._id)
-       return res.json({error: true, msg: "you have not the right privilege"})
        const jobDetail = await Job.findById(_id)
        if(!jobDetail) return next(ApiError.notFoundError(`job with an id of ${_id} is not found`))
        else return res.json(jobDetail)
@@ -26,7 +24,10 @@ const getJobDetail = async (req, res, next)=>{
         return next(ApiError.internalServerError(error.message))
     }
   }
+
+  
   const getJobList = async (req, res, next)=>{
+      console.log("hi");
     const limit = parseInt(req.query.limit)  
     const page = parseInt(req.query.page)
     if( !(limit > 0 && page > 0) ) {  
@@ -36,7 +37,7 @@ const getJobDetail = async (req, res, next)=>{
         Job.paginate({}, { page, limit }, function(err, result) {
           return  res.json(result)
         });
-    } catch (errors) {
+    } catch (errors) { 
         return next(ApiError.internalServerError(error.message))
     }
      
