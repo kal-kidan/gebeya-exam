@@ -5,16 +5,10 @@ const versionOneRouter = require('./routes/v1.router')
 const errorHandler = require('./middleware/error-handler')
 const auth = require('./middleware/auth.middleware')
 const unless = require('express-unless');
-
-
-//authenitcation
-auth.unless = unless;
-app.use(auth.unless({ path:['/v1/auth/signin', '/v1/auth/signup', '/api-docs'] }))
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 //route 
 app.use('/v1', versionOneRouter)
-//error handler
-app.use(errorHandler)
 
 //documentation
 const expressSwagger = require('express-swagger-generator')(app)
@@ -47,8 +41,9 @@ let options = {
 expressSwagger(options)
 
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+//error handler
+app.use(errorHandler)
+
 
 // security 
 const mongoSanitize = require('express-mongo-sanitize')
