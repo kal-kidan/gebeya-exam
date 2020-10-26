@@ -6,8 +6,8 @@ const authorize = require('./../middleware/auth.middleware')
 const unless = require('express-unless');
 //authenitcation
 authorize.unless = unless;
-router.use(authorize.unless({ path:['/v1/auth/signin', '/v1/auth/signup', '/api-docs', 'api-docs'] }))
+
 router.use('/auth', auth)
 router.use('/job', job)
-
+router.use(authorize.unless({ path:['/auth/signin', '/auth/signup', '/api-docs'] }))
 module.exports = router

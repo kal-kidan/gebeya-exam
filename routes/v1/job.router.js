@@ -22,7 +22,7 @@ const router = express.Router()
  */
   
 
-router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.addJob )
+router.post('/' ,validator.validateJob, JobController.addJob )
  
 /**
  * @route GET /v1/job/{_id}
@@ -33,7 +33,7 @@ router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.a
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
+router.get('/:_id',JobController.getJobDetail )
 
 /**
  * @route GET /v1/job/jobs/list
@@ -45,5 +45,5 @@ router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/jobs/list',hasPermission('getJobList'),JobController.getJobList )
+router.get('/jobs/list',JobController.getJobList )
 module.exports = router
