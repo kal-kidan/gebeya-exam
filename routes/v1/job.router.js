@@ -1,6 +1,7 @@
 const express = require('express')
 const JobController = require('./../../controllers/JobController')
 const validator = require('./../../middleware/form-validator')
+const hasPermission = require('./../../middleware/permission')
 const router = express.Router()
 /**
  * @typedef Job
@@ -21,7 +22,7 @@ const router = express.Router()
  */
   
 
-router.post('/' ,validator.validateJob, JobController.addJob )
+router.post('/' ,hasPermission('addJob'),validator.validateJob, JobController.addJob )
  
 /**
  * @route GET /v1/job/{_id}
@@ -32,7 +33,7 @@ router.post('/' ,validator.validateJob, JobController.addJob )
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/:_id',JobController.getJobDetail )
+router.get('/:_id',hasPermission('getJobDetail'),JobController.getJobDetail )
 
 /**
  * @route GET /v1/job/list
@@ -44,5 +45,5 @@ router.get('/:_id',JobController.getJobDetail )
  * @returns {Error} 404 - job not found
  * 
  */
-router.get('/list',JobController.getJobList )
+router.get('/list',hasPermission('getJobList'),JobController.getJobList )
 module.exports = router
