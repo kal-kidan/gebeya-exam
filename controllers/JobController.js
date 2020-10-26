@@ -4,6 +4,8 @@ const ApiError = require('./../error/ApiError')
 const Job = require('./../models/job.model')
 const addJob = async (req, res, next)=>{
     try {
+        const errors = validationResult(req)
+        if(!errors.isEmpty()) return next(ApiError.badRequest(errors))
         const job = await Job.create(req.body)
         if(!job) 
         return next(ApiError.badRequest(errors))
