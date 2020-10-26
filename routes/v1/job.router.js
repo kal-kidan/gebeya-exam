@@ -1,7 +1,7 @@
 const express = require('express')
 const JobController = require('./../../controllers/JobController')
 const validator = require('./../../middleware/form-validator')
-const hasPermission = require('./../../middleware/permission')
+const {hasPermission} = require('./../../middleware/permission')
 const router = express.Router()
 /**
  * @typedef Job
@@ -22,7 +22,7 @@ const router = express.Router()
  */
   
 
-router.post('/' ,hasPermission('addJob'),validator.validateJob, JobController.addJob )
+router.post('/' , hasPermission('addJob'),validator.validateJob, JobController.addJob )
  
 /**
  * @route GET /v1/job/{_id}

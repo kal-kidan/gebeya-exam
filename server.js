@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const versionOneRouter = require('./routes/v1.router')
 const errorHandler = require('./middleware/error-handler')
+const auth = require('./middleware/auth.middleware')
+const unless = require('express-unless');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -58,7 +60,9 @@ let options = {
     files: ['./routes/v1/*.js'] //Path to the API handle folder
 };
 expressSwagger(options)
-
+//authenitcation
+auth.unless = unless;
+app.use(auth.unless({ path:['/v1/auth/signin', '/v1/auth/signup'] }))
 //route 
 app.use('/v1', versionOneRouter)
 
